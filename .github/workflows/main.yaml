@@ -1,4 +1,4 @@
-on: [push, pull_request, workflow_dispatch]
+on: [push, pull_request]
 name: BuildAndTest
 jobs:
   build:
@@ -86,17 +86,17 @@ jobs:
       #   run: |
       #     pip3 install e3-testsuite
       # #     pip3 install e3-core
-      # - name: Install gprbuild and the gnat toolchain with alire
-      #   run: |
-      #        alr install gprbuild
-            #  echo $PWD/gprbuild/bin >> $GITHUB_PATH
-            #  alr install gnat_native --prefix=gnat
-            #  echo $PWD/gnat/bin >> $GITHUB_PATH
+      - name: Install gprbuild and the gnat toolchain with alire
+        run: |
+             alr install gprbuild
+             echo $PWD/gprbuild/bin >> $GITHUB_PATH
+             alr install gnat_native --prefix=gnat
+             echo $PWD/gnat/bin >> $GITHUB_PATH
 
       # # Build, Install and test gnatcoll in DEBUG mode
-      # - name: Build GNATCOLL
-      #   run: make BUILD=DEBUG
-      # - name: Install GNATCOLL
-      #   run: make BUILD=DEBUG install
-      # - name: Test GNATCOLL
-      #   run: (cd testsuite && python3 ./run-tests -j2 --failure-exit-code 1 -E)
+      - name: Build GNATCOLL
+        run: make BUILD=DEBUG
+      - name: Install GNATCOLL
+        run: make BUILD=DEBUG install
+      - name: Test GNATCOLL
+        run: (cd testsuite && python3 ./run-tests -j2 --failure-exit-code 1 -E)
