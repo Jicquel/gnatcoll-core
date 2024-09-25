@@ -88,7 +88,7 @@ jobs:
       # #     pip3 install e3-core
       - name: Install gprbuild and the gnat toolchain with alire
         run: |
-             alr install gprbuild
+             alr install gprbuild --prefix=gprbuild
              echo $PWD/gprbuild/bin >> $GITHUB_PATH
              alr install gnat_native --prefix=gnat
              echo $PWD/gnat/bin >> $GITHUB_PATH
