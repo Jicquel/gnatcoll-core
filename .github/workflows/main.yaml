@@ -97,8 +97,10 @@ jobs:
       - name: Build GNATCOLL
         run: |
              root_dir=$PWD
-             alr get libgpr && cd libgpr* && alr install & cd $root_dir
-             export GPR_PROJECT_PATH=$PWD/$(alr get libgpr --dirname)/gpr:$GPR_PROJECT_PATH
+             alr get libgpr && cd libgpr* && alr install
+             eval $(alr -n printenv | grep GPR_PROJECT_PATH)
+             cd $root_dir
+             echo GPR_PROJECT_PATH
              echo $GPR_PROJECT_PATH
              make BUILD=DEBUG
       - name: Install GNATCOLL
