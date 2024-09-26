@@ -79,9 +79,9 @@ jobs:
       # - name: Get e3-core
       #   if: steps.cache-deps.outputs.cache-hit != 'true'
       #   run: git clone https://github.com/AdaCore/e3-core.git
-      # - uses: actions/setup-python@v2
-      #   with:
-      #       python-version: '3.12'
+      - uses: actions/setup-python@v2
+        with:
+            python-version: '3.12'
       # - name: Install e3 testsuite and core
       #   run: |
       #     pip3 install e3-testsuite
@@ -102,8 +102,8 @@ jobs:
              cd $root_dir
              echo GPR_PROJECT_PATH
              echo $GPR_PROJECT_PATH
-             make BUILD=DEBUG
+             make
       - name: Install GNATCOLL
-        run: make BUILD=DEBUG install
+        run: ./gnatcoll_core.gpr.py build --build DEBUG --install install
       - name: Test GNATCOLL
         run: (cd testsuite && python3 ./run-tests -j2 --failure-exit-code 1 -E)
