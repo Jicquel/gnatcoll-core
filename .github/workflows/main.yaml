@@ -92,6 +92,7 @@ jobs:
              echo $PWD/gprbuild/bin >> $GITHUB_PATH
              alr install gnat_native --prefix=gnat
              echo $PWD/gnat/bin >> $GITHUB_PATH
+             alr get libgpr && cd libgpr* && alr install
 
       # # Build, Install and test gnatcoll in DEBUG mode
       - name: Build GNATCOLL
